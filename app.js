@@ -70,14 +70,14 @@ const CONFIG = {
   letter: {
     photoSrc: '', // Custom photo URL or empty for default portrait
     photoCaption: 'My Favourite Person 🤍',
-    dateStamp: 'November 21, 2026',
+    dateStamp: 'December 21, 2026',
     recipientName: 'My Dearest Bestie',
     paragraphs: [
       "Happy birthday to my favourite person in the entire universe! 🤍",
       "From the very first moment we became friends, you brought an unexplainable amount of warmth, genuine laughter, and bright light into my life. Every single memory with you feels like a warm cup of cocoa on a cold winter night.",
       "Thank you for being the one person I can always run to, the one who knows all my quirks without judging, and the one who turns ordinary days into sweet, magical adventures.",
       "May this brand-new chapter of your life be overflowing with pure happiness, peace, success, and all the dreams your heart has been whispering for. You deserve the absolute world and more.",
-      "Always your biggest cheerleader and forever by your side! 🎂✨ Happiest Birthday MADAM JII! 💖"
+      "Always your biggest cheerleader and forever by your side! 🎂✨ Happiest Birthday MAADAMMM JII! 💖"
     ]
   },
 
