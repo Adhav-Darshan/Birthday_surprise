@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>A Secret Birthday Gift For You 🎁</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Floating Audio Player Control -->
+  <div class="audio-control-container" id="audioContainer">
+    <button class="music-toggle-btn" id="musicToggleBtn" aria-label="Toggle background music" title="Toggle romantic acoustic music">
+      <div class="disc-icon" id="discIcon">
+        <svg viewBox="0 0 24 24" class="svg-icon">
+          <circle cx="12" cy="12" r="10" fill="#ff4d6d" stroke="#fff" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" fill="#fff"/>
+          <circle cx="12" cy="12" r="1.5" fill="#ff4d6d"/>
+          <path d="M12 4 A8 8 0 0 1 19 9" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sound-wave" id="soundWave">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <span class="music-label" id="musicLabel">Music</span>
+    </button>
+  </div>
+
+  <!-- Background Animated Hearts & Sparkles Canvas / Elements -->
+  <div class="ambient-particles" id="ambientParticles" aria-hidden="true"></div>
+
+  <!-- Main Multi-step Application Container -->
+  <main class="app-viewport" id="appViewport">
+
+    <!-- ==========================================
+         STEP 1: Midnight Curtain Countdown
+         ========================================== -->
+    <section class="step-view step-curtain active" id="step1" aria-label="Step 1: Midnight Curtain Countdown">
+      <!-- Velvet Theatre Curtains -->
+      <div class="theatre-stage">
+        <!-- Top Pelmet / Valance -->
+        <div class="curtain-pelmet">
+          <div class="pelmet-swag"></div>
+          <div class="pelmet-swag"></div>
+          <div class="pelmet-swag"></div>
+          <div class="gold-fringe"></div>
+        </div>
+
+        <!-- Left Curtain Panel -->
+        <div class="curtain-panel curtain-left" id="curtainLeft">
+          <div class="curtain-fold"></div>
+          <div class="curtain-fold"></div>
+          <div class="curtain-fold"></div>
+          <div class="curtain-fold"></div>
+          <div class="curtain-fold"></div>
+          <div class="curtain-tieback left-tie">
+            <span class="tassel"></span>
+          </div>
+        </div>
+
+        <!-- Right Curtain Panel -->
+        <div class="curtain-panel curtain-right" id="curtainRight">
+          <div class="curtain-fold"></div>
+          <div class="curtain-fold"></div>
+          <div class="curtain-fold"></div>
+          <div class="curtain-fold"></div>
+          <div class="curtain-fold"></div>
+          <div class="curtain-tieback right-tie">
+            <span class="tassel"></span>
+          </div>
+        </div>
+
+        <!-- Center Countdown Stage Card -->
+        <div class="curtain-content" id="curtainContent">
+          <div class="stage-card">
+            <!-- Decorative Gold Ribbon Tag -->
+            <div class="gold-ribbon-tag">✨ SPECIAL SURPRISE ✨</div>
+
+            <!-- Vintage Gold-Rimmed Analog Clock -->
+            <div class="analog-clock-wrapper">
+              <div class="analog-clock" id="analogClock">
+                <div class="clock-outer-rim">
+                  <div class="clock-face">
+                    <!-- Numerals -->
+                    <span class="numeral num-12">XII</span>
+                    <span class="numeral num-3">III</span>
+                    <span class="numeral num-6">VI</span>
+                    <span class="numeral num-9">IX</span>
+
+                    <!-- Minute dots -->
+                    <div class="clock-dots"></div>
+
+                    <!-- Clock Hands -->
+                    <div class="hand hour-hand" id="hourHand"></div>
+                    <div class="hand minute-hand" id="minuteHand"></div>
+                    <div class="hand second-hand" id="secondHand"></div>
+                    <div class="clock-center-pin"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Digital Countdown Display -->
+            <div class="digital-countdown-box">
+              <div class="countdown-caption">COUNTDOWN TO MIDNIGHT</div>
+              <div class="digital-timer" id="digitalTimer" aria-live="polite">11:59:57</div>
+              <div class="timer-subtext">A secret celebration is about to begin...</div>
+            </div>
+
+            <!-- Skip Button -->
+            <button class="skip-btn" id="skipCountdownBtn" title="Skip directly to the surprise">
+              <span>Skip Countdown ⏩</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         STEP 2: 4-Digit Secret Passcode Screen
+         ========================================== -->
+    <section class="step-view step-passcode" id="step2" aria-label="Step 2: 4-Digit Secret Passcode Screen">
+      <div class="scrapbook-card passcode-card" id="passcodeCard">
+        <!-- Cute Decorative Washi Tapes -->
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <!-- Split Screen Container -->
+        <div class="split-layout">
+          <!-- Left Column: Scrapbook Photo & Reaction -->
+          <div class="split-left-scrapbook">
+            <div class="striped-bg-container">
+              <div class="polaroid-frame-wrapper" id="passcodePolaroidWrap">
+                <div class="cute-pin">📌</div>
+                <div class="polaroid-frame" id="passcodePolaroid">
+                  <div class="polaroid-img-container">
+                    <img id="passcodeReactionImg" class="polaroid-photo" src="" alt="Birthday Sticker" />
+                  </div>
+                  <div class="polaroid-note" id="passcodePolaroidNote">Birthday Girl 💖</div>
+                </div>
+              </div>
+              <div class="scrapbook-stickers">
+                <span class="sticker-heart">🌸</span>
+                <span class="sticker-star">⭐</span>
+                <span class="sticker-sparkle">✨</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Passcode Keypad & Inputs -->
+          <div class="split-right-keypad">
+            <div class="keypad-header">
+              <div class="cute-badge">SECRET ENTRY 🔐</div>
+              <h2 class="keypad-title">Enter a passcode</h2>
+              <p class="keypad-subtitle">Enter the 4-digit secret passcode 💗</p>
+            </div>
+
+            <!-- 4 Digits Display Boxes -->
+            <div class="passcode-dots-container" id="passcodeBoxes">
+              <div class="passcode-box active" data-index="0"></div>
+              <div class="passcode-box" data-index="1"></div>
+              <div class="passcode-box" data-index="2"></div>
+              <div class="passcode-box" data-index="3"></div>
+            </div>
+
+            <!-- Error message container -->
+            <div class="passcode-error-msg" id="passcodeError" aria-live="assertive">
+              Oops! Wrong passcode! Try again cutie! 😜
+            </div>
+
+            <!-- Reset / Try Again Button (Shown on error) -->
+            <button class="try-again-btn" id="tryAgainBtn" style="display: none;">
+              Try Again ↺
+            </button>
+
+            <!-- On-Screen Circular White Numeric Keypad -->
+            <div class="numeric-keypad" id="numericKeypad">
+              <button class="key-btn" data-key="1">1</button>
+              <button class="key-btn" data-key="2">2</button>
+              <button class="key-btn" data-key="3">3</button>
+              <button class="key-btn" data-key="4">4</button>
+              <button class="key-btn" data-key="5">5</button>
+              <button class="key-btn" data-key="6">6</button>
+              <button class="key-btn" data-key="7">7</button>
+              <button class="key-btn" data-key="8">8</button>
+              <button class="key-btn" data-key="9">9</button>
+              <button class="key-btn key-action" data-key="backspace" title="Delete" aria-label="Backspace">⌫</button>
+              <button class="key-btn" data-key="0">0</button>
+              <button class="key-btn key-heart" data-key="enter" title="Submit" aria-label="Enter">❤️</button>
+            </div>
+
+            <div class="passcode-hint">
+              <span>Hint: Try the default passcode <strong id="hintPasscode">2005</strong> 😉</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         STEP 3: Playful "Do You Wanna See It?" Tease
+         ========================================== -->
+    <section class="step-view step-tease" id="step3" aria-label="Step 3: Do You Wanna See It?">
+      <div class="scrapbook-card tease-card">
+        <div class="washi-tape washi-top-center"></div>
+
+        <div class="card-inner-padding">
+          <div class="tease-badge">SURPRISE WAITING 🎉</div>
+          <h2 class="tease-header" id="teaseHeader">I have made something for you</h2>
+
+          <!-- Center Animated Character -->
+          <div class="tease-character-box">
+            <div class="character-glow"></div>
+            <img id="teaseCharacterImg" class="tease-character" src="" alt="Cute character" />
+          </div>
+
+          <h3 class="tease-question" id="teaseQuestion">Do you wanna see it?</h3>
+
+          <!-- Two Glossy Red Pill Buttons (YES & NO) -->
+          <div class="buttons-play-arena" id="teaseBtnArena">
+            <button class="pill-btn pill-btn-yes" id="teaseYesBtn">
+              <span>YES 💖</span>
+            </button>
+            <button class="pill-btn pill-btn-no" id="teaseNoBtn">
+              <span>NO 🙈</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         STEP 4: "Are You Really Excited?" Hype Screen
+         ========================================== -->
+    <section class="step-view step-hype" id="step4" aria-label="Step 4: Are You Really Excited?">
+      <div class="scrapbook-card hype-card">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-inner-padding">
+          <div class="hype-badge">HYPING UP 🚀</div>
+          <h2 class="hype-header">Are you really excited?</h2>
+          <p class="hype-subtext">Get ready for something super special! 🥰✨</p>
+
+          <!-- Excited Peeking Character -->
+          <div class="hype-character-box">
+            <div class="sparkle-orbit orbit-1">✨</div>
+            <div class="sparkle-orbit orbit-2">⭐</div>
+            <div class="sparkle-orbit orbit-3">💖</div>
+            <img id="hypeCharacterImg" class="hype-character" src="" alt="Excited character" />
+          </div>
+
+          <!-- Two Glossy Red YES Buttons -->
+          <div class="hype-buttons-row">
+            <button class="pill-btn pill-btn-yes hype-yes-1" id="hypeYesBtn1">
+              <span>YES! 🎉</span>
+            </button>
+            <button class="pill-btn pill-btn-yes hype-yes-2" id="hypeYesBtn2">
+              <span>DEFINITELY YES! 🥰</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         STEP 5: 3 Heart Mystery Boxes Hub
+         ========================================== -->
+    <section class="step-view step-hub" id="step5" aria-label="Step 5: 3 Heart Mystery Boxes Hub">
+      <div class="hub-container">
+        <!-- Hub Top Banner -->
+        <div class="hub-header-card">
+          <div class="confetti-garland">🎀 🎈 🎀 🎈 🎀</div>
+          <h1 class="hub-main-title">✨ Mystery Birthday Boxes ✨</h1>
+          <p class="hub-subtitle">Three special surprises have been packed with lots of love!</p>
+          <div class="hub-progress-tracker" id="hubProgressTracker">
+            Gifts Unlocked: <span id="unlockedCount">0</span> of 3 🎁
+          </div>
+        </div>
+
+        <!-- 3D Red Heart Gift Boxes Row -->
+        <div class="boxes-stage">
+          <!-- Heart Gift Box 1 -->
+          <div class="heart-box-card" id="boxCard1" data-gift="1">
+            <div class="box-badge" id="boxBadge1">Gift #1</div>
+            <div class="heart-3d-box" id="heartBox1">
+              <div class="heart-body">
+                <div class="heart-shape"></div>
+                <div class="heart-ribbon-v"></div>
+                <div class="heart-ribbon-h"></div>
+                <div class="heart-bow">🎀</div>
+                <div class="heart-sparkles">✨</div>
+              </div>
+            </div>
+            <h3 class="box-label">Memories</h3>
+            <p class="box-desc">Polaroid Clothesline 📸</p>
+            <button class="open-box-btn" id="openBoxBtn1">Open Gift 1 💌</button>
+          </div>
+
+          <!-- Heart Gift Box 2 -->
+          <div class="heart-box-card" id="boxCard2" data-gift="2">
+            <div class="box-badge" id="boxBadge2">Gift #2</div>
+            <div class="heart-3d-box" id="heartBox2">
+              <div class="heart-body">
+                <div class="heart-shape"></div>
+                <div class="heart-ribbon-v"></div>
+                <div class="heart-ribbon-h"></div>
+                <div class="heart-bow">🎀</div>
+                <div class="heart-sparkles">✨</div>
+              </div>
+            </div>
+            <h3 class="box-label">Birthday Wish Card</h3>
+            <p class="box-desc">Typewriter Wish 💌</p>
+            <button class="open-box-btn" id="openBoxBtn2">Open Gift 2 💌</button>
+          </div>
+
+          <!-- Heart Gift Box 3 -->
+          <div class="heart-box-card" id="boxCard3" data-gift="3">
+            <div class="box-badge" id="boxBadge3">Gift #3</div>
+            <div class="heart-3d-box" id="heartBox3">
+              <div class="heart-body">
+                <div class="heart-shape"></div>
+                <div class="heart-ribbon-v"></div>
+                <div class="heart-ribbon-h"></div>
+                <div class="heart-bow">🎀</div>
+                <div class="heart-sparkles">✨</div>
+              </div>
+            </div>
+            <h3 class="box-label">Make a Wish</h3>
+            <p class="box-desc">Birthday Cake 🎂</p>
+            <button class="open-box-btn" id="openBoxBtn3">Open Gift 3 💌</button>
+          </div>
+        </div>
+
+        <!-- Curious Pirate Character Sticker & Instructions -->
+        <div class="hub-mascot-footer">
+          <div class="mascot-img-wrap">
+            <img id="hubMascotImg" class="hub-mascot" src="" alt="Curious Character" />
+          </div>
+          <div class="mascot-bubble">
+            <p class="speech-text">Tap on the mystery box to unlock your gifts! 🏴‍☠️✨</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         GIFT 1 VIEW: "MEMORIES" Polaroid Clothesline
+         ========================================== -->
+    <section class="step-view step-gift gift-view-1" id="giftView1" aria-label="Gift 1: Memories Clothesline">
+      <!-- Top Navigation -->
+      <header class="gift-nav-bar">
+        <button class="back-to-hub-btn" data-target="step5">
+          <span>← Back to Gifts 🎁</span>
+        </button>
+        <div class="gift-nav-title">Gift 1: Precious Memories</div>
+      </header>
+
+      <div class="gift-card scrapbook-card clothesline-scrapbook">
+        <!-- Letter Tiles: M E M O R I E S -->
+        <div class="wooden-tiles-container" aria-label="M E M O R I E S">
+          <div class="letter-tile">M</div>
+          <div class="letter-tile">E</div>
+          <div class="letter-tile">M</div>
+          <div class="letter-tile">O</div>
+          <div class="letter-tile">R</div>
+          <div class="letter-tile">I</div>
+          <div class="letter-tile">E</div>
+          <div class="letter-tile">S</div>
+        </div>
+
+        <!-- Clothesline Stage -->
+        <div class="clothesline-stage-wrapper">
+          <!-- Navigation Arrow Left -->
+          <button class="carousel-arrow arrow-left" id="clotheslinePrevBtn" aria-label="Previous polaroids">
+            <span>&#10094;</span>
+          </button>
+
+          <!-- The Rope & Hanging Polaroids Container -->
+          <div class="clothesline-viewport" id="clotheslineViewport">
+            <!-- Hanging Rope Line -->
+            <div class="clothesline-rope"></div>
+
+            <!-- Hanging Polaroids Track -->
+            <div class="polaroids-clothesline-track" id="polaroidsTrack">
+              <!-- Dynamically populated from CONFIG.polaroids -->
+            </div>
+          </div>
+
+          <!-- Navigation Arrow Right -->
+          <button class="carousel-arrow arrow-right" id="clotheslineNextBtn" aria-label="Next polaroids">
+            <span>&#10095;</span>
+          </button>
+        </div>
+
+        <!-- Bottom Helper Bar with Retro Camera -->
+        <div class="clothesline-footer-bar">
+          <div class="retro-camera-box" id="retroCameraBtn" title="Click to flash!">
+            <div class="camera-body">
+              <div class="camera-lens"></div>
+              <div class="camera-flash"></div>
+              <div class="camera-stripe"></div>
+            </div>
+            <span class="camera-flash-beam" id="cameraFlashBeam"></span>
+          </div>
+          <p class="clothesline-helper-text">
+            👆 Tap any photo to see it big, or use <strong>&lt; &gt;</strong> arrows to view all memories! ✨
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         GIFT 2 VIEW: Typewriter Birthday Wish Card
+         ========================================== -->
+    <section class="step-view step-gift gift-view-2" id="giftView2" aria-label="Gift 2: Typewriter Birthday Wish Card">
+      <!-- Top Navigation -->
+      <header class="gift-nav-bar">
+        <button class="back-to-hub-btn" data-target="step5">
+          <span>← Back to Gifts 🎁</span>
+        </button>
+        <div class="gift-nav-title">Gift 2: Birthday Wish Card</div>
+      </header>
+
+      <div class="gift-card typewriter-card">
+        <div class="typewriter-layout">
+          <!-- Left Column: Tilted Polaroid with Purple Ribbon -->
+          <div class="typewriter-left-side">
+            <div class="purple-ribbon-tag">
+              <span class="purple-bow">🎀</span>
+              <span class="ribbon-text">For You</span>
+            </div>
+
+            <div class="polaroid-frame typewriter-portrait">
+              <div class="polaroid-img-container">
+                <img id="typewriterPhoto" class="polaroid-photo" src="" alt="Birthday Star Photo" />
+              </div>
+              <div class="polaroid-note" id="typewriterPhotoCaption">My Favourite Person 🤍</div>
+            </div>
+
+            <div class="letter-postage-stamp">
+              <div class="stamp-inner">
+                <span>💌 WISH</span>
+                <small>SPECIAL ED.</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Monospace Typewriter Paper -->
+          <div class="typewriter-right-side">
+            <div class="stationery-paper">
+              <div class="stationery-header">
+                <span class="stationery-date" id="typewriterDate">Nov 21, 2026</span>
+                <span class="stationery-wax-seal">💖</span>
+              </div>
+
+              <!-- Animated Typewriter Text Container -->
+              <div class="typewriter-body" id="typewriterContent">
+                <!-- Text lines rendered via JS typing -->
+                <span id="typedText"></span><span class="blinking-cursor" id="blinkingCursor">|</span>
+              </div>
+
+              <!-- Typewriter Controls -->
+              <div class="typewriter-controls">
+                <button class="typewriter-btn" id="skipTypingBtn">
+                  <span>Skip Typing ⚡</span>
+                </button>
+                <button class="typewriter-btn" id="replayTypingBtn">
+                  <span>Replay ↺</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         GIFT 3 VIEW: Interactive "MAKE A WISH" Birthday Cake
+         ========================================== -->
+    <section class="step-view step-gift gift-view-3" id="giftView3" aria-label="Gift 3: Interactive Make a Wish Birthday Cake">
+      <!-- Top Navigation -->
+      <header class="gift-nav-bar">
+        <button class="back-to-hub-btn" data-target="step5">
+          <span>← Back to Gifts 🎁</span>
+        </button>
+        <div class="gift-nav-title">Gift 3: Make a Wish</div>
+      </header>
+
+      <div class="gift-card cake-card">
+        <!-- Scalloped Header & Title -->
+        <div class="cake-header-wrap">
+          <div class="scallop-ribbon"></div>
+          <h2 class="cake-main-title" id="cakeTitle">MAKE A WISH 🎂</h2>
+          <p class="cake-subtitle" id="cakeSubtitle">Close your eyes and make a special birthday wish!</p>
+        </div>
+
+        <!-- Centerpiece Stage: Banner, Cake & Balloons -->
+        <div class="cake-stage-container">
+          <!-- Left Decorative Bunting Banner: "I love you" -->
+          <div class="bunting-side-banner">
+            <div class="bunting-string"></div>
+            <div class="bunting-flags">
+              <span class="bunting-flag">I</span>
+              <span class="bunting-flag heart">❤️</span>
+              <span class="bunting-flag">L</span>
+              <span class="bunting-flag">O</span>
+              <span class="bunting-flag">V</span>
+              <span class="bunting-flag">E</span>
+              <span class="bunting-flag">Y</span>
+              <span class="bunting-flag">O</span>
+              <span class="bunting-flag">U</span>
+            </div>
+          </div>
+
+          <!-- 2-Tier Birthday Cake Centerpiece -->
+          <div class="cake-centerpiece" id="cakeCenterpiece" title="Click anywhere on the cake to blow out candles!">
+            <!-- Candles Row (4 candles) -->
+            <div class="candles-rack" id="candlesRack">
+              <!-- Candle 1 -->
+              <div class="candle" data-candle="1" id="candle1">
+                <div class="candle-flame-wrap">
+                  <div class="flame"></div>
+                  <div class="flame-glow"></div>
+                  <div class="smoke-puff"></div>
+                </div>
+                <div class="candle-wick"></div>
+                <div class="candle-stick candle-stripe-1"></div>
+              </div>
+
+              <!-- Candle 2 -->
+              <div class="candle" data-candle="2" id="candle2">
+                <div class="candle-flame-wrap">
+                  <div class="flame"></div>
+                  <div class="flame-glow"></div>
+                  <div class="smoke-puff"></div>
+                </div>
+                <div class="candle-wick"></div>
+                <div class="candle-stick candle-stripe-2"></div>
+              </div>
+
+              <!-- Candle 3 -->
+              <div class="candle" data-candle="3" id="candle3">
+                <div class="candle-flame-wrap">
+                  <div class="flame"></div>
+                  <div class="flame-glow"></div>
+                  <div class="smoke-puff"></div>
+                </div>
+                <div class="candle-wick"></div>
+                <div class="candle-stick candle-stripe-3"></div>
+              </div>
+
+              <!-- Candle 4 -->
+              <div class="candle" data-candle="4" id="candle4">
+                <div class="candle-flame-wrap">
+                  <div class="flame"></div>
+                  <div class="flame-glow"></div>
+                  <div class="smoke-puff"></div>
+                </div>
+                <div class="candle-wick"></div>
+                <div class="candle-stick candle-stripe-4"></div>
+              </div>
+            </div>
+
+            <!-- Cake Tier 2 (Top Tier) -->
+            <div class="cake-tier tier-top">
+              <div class="strawberries-row">
+                <span>🍓</span><span>🍓</span><span>🍓</span><span>🍓</span><span>🍓</span>
+              </div>
+              <div class="cream-frosting top-frosting">
+                <div class="drip drip-1"></div>
+                <div class="drip drip-2"></div>
+                <div class="drip drip-3"></div>
+                <div class="drip drip-4"></div>
+              </div>
+              <div class="tier-sponge sponge-top"></div>
+            </div>
+
+            <!-- Cake Tier 1 (Bottom Tier) -->
+            <div class="cake-tier tier-bottom">
+              <div class="cream-frosting bottom-frosting">
+                <div class="drip drip-b1"></div>
+                <div class="drip drip-b2"></div>
+                <div class="drip drip-b3"></div>
+                <div class="drip drip-b4"></div>
+                <div class="drip drip-b5"></div>
+              </div>
+              <div class="tier-sponge sponge-bottom">
+                <div class="sponge-dots"></div>
+              </div>
+            </div>
+
+            <!-- Decorative Gold Cake Stand / Plate -->
+            <div class="cake-plate"></div>
+          </div>
+
+          <!-- Right Decorative Cute Character with Balloons -->
+          <div class="balloon-character-side">
+            <div class="heart-balloons-bundle">
+              <span class="balloon b-pink">💗</span>
+              <span class="balloon b-red">❤️</span>
+              <span class="balloon b-purple">💜</span>
+              <span class="balloon b-yellow">💛</span>
+            </div>
+            <img id="cakeMascotImg" class="cake-mascot" src="" alt="Balloon mascot" />
+          </div>
+        </div>
+
+        <!-- Instructions & Action Controls -->
+        <div class="cake-controls-container">
+          <p class="cake-instructions" id="cakeInstructions">
+            Tap each candle to blow it out, or tap the cake / <strong>'BLOW ALL'</strong> button to make a wish! 🎂
+          </p>
+
+          <div class="cake-action-btns">
+            <button class="cake-action-btn blow-all-btn" id="blowAllBtn">
+              <span>Blow All Candles 💨</span>
+            </button>
+            <button class="cake-action-btn mic-btn" id="micBlowBtn" title="Enable microphone to blow candles by blowing on phone/laptop">
+              <span>Use Microphone 🎙️</span>
+            </button>
+          </div>
+
+          <div class="mic-status-indicator" id="micStatusIndicator" style="display:none;">
+            <span class="pulse-mic">🔴</span>
+            <span id="micStatusText">Listening for your breath... Blow into your microphone! 🌬️</span>
+          </div>
+
+          <!-- Celebration Wish Card (Revealed when all candles blown) -->
+          <div class="wish-reveal-card" id="wishRevealCard" style="display: none;">
+            <div class="wish-celebration-title">🎉 WISH GRANTED! 🎉</div>
+            <p class="wish-celebration-text" id="wishCelebrationText">
+              May all your dreams come true! Sending you all the love and happiness in the universe! 💖✨
+            </p>
+            <div class="wish-btns-row">
+              <button class="cake-action-btn light-again-btn" id="relightCandlesBtn">
+                <span>Light Again 🔥</span>
+              </button>
+              <button class="cake-action-btn return-gifts-btn" data-target="step5">
+                <span>Back to Gifts 🎁</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       FULLSCREEN POLAROID LIGHTBOX MODAL
+       ========================================== -->
+  <div class="lightbox-modal" id="lightboxModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close modal">✕</button>
+      <div class="lightbox-polaroid">
+        <div class="lightbox-washi"></div>
+        <div class="lightbox-img-wrap">
+          <img id="lightboxImg" src="" alt="Enlarged Memory Photo" />
+        </div>
+        <div class="lightbox-details">
+          <h3 class="lightbox-caption" id="lightboxCaption">More than bestie ❤️</h3>
+          <div class="lightbox-date" id="lightboxDate">May 14, 2023</div>
+          <p class="lightbox-desc" id="lightboxDesc">A day full of laughter and magic that will always stay in my heart.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Element for optional MP3 fallback / user-provided audio file -->
+  <audio id="bgAudio" loop preload="auto"></audio>
+
+  <!-- Main JavaScript File -->
+  <script src="app.js"></script>
+</body>
+</html>
